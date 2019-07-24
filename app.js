@@ -187,10 +187,13 @@ function handleEvent(event){
     };
     if(totalClicks === 25){
         var imgs = document.getElementsByTagName('img');
-        for(i = 0; i < imgs.length; i++){
+        for(var i = 0; i < imgs.length; i++){
             imgs[i].removeEventListener('click', handleEvent);
         };
         displayResults();
+        saveResults();
+        console.log("here");
+
     };
 };
 
@@ -210,7 +213,21 @@ var canvas = new Chart(ctx, {
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(211, 95, 33, 0.2)',
+                'rgba(79,208,107,0.2)',
+                'rgba(81,197,192,0.2)',
+                'rgba(239,215,76,0.2)',
+                'rgba(129,25,81,0.2)',
+                'rgba(56,26,8,0.2)',
+                'rgba(224,86,228,0.2)',
+                'rgba(244,107,18,0.2)',
+                'rgba(187,253,221,0.2)',
+                'rgba(97,68,101,0.2)',
+                'rgba(24,40,174,0.2)',
+                'rgba(245,201,194,0.2)',
+                'rgba(79,243,145,0.2)',
+                'rgba(126,25,34,0.2)',
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -218,7 +235,21 @@ var canvas = new Chart(ctx, {
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgba(211, 95, 33, 1)',
+                'rgba(79,208,107,1)',
+                'rgba(81,197,192,1)',
+                'rgba(239,215,76,1)',
+                'rgba(129,25,81,1)',
+                'rgba(56,26,8,1)',
+                'rgba(224,86,228,1)',
+                'rgba(244,107,18,1)',
+                'rgba(187,253,221,1)',
+                'rgba(97,68,101,1)',
+                'rgba(24,40,174,1)',
+                'rgba(245,201,194,1)',
+                'rgba(79,243,145,1)',
+                'rgba(126,25,34,1)',
             ],
             borderWidth: 1
         }]
@@ -249,15 +280,31 @@ function displayResults(){
    }
    createChart(ctx2d,labels,"Votes",data);
    var results = document.getElementById("results");
-   results.appendChild("myChart");
+   //results.appendChild("myChart");
 
+   
 };
 function saveResults(){
    
     localStorage.setItem("allProducts", JSON.stringify(allProducts))
     console.log(localStorage.allProducts);
 }
+function callStorage(){
+    var storage = localStorage['allProducts'];
+    if(storage){
+        allProducts = JSON.parse(storage);
+        
+        displayResults();
+
+
+    }
+    else{
+        return;
+    }
+    imgs[i].removeEventListener('click', handleEvent);
+
+}
 
 createProducts();
+callStorage();
 render();
-saveResults();
