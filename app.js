@@ -304,6 +304,13 @@ function callStorage(){
     imgs[i].removeEventListener('click', handleEvent);
 
 }
+var resetButton = document.querySelector('button[type="reset"]');
+resetButton.addEventListener("click", function resetClick(event){
+   console.log("reset click", event);
+   localStorage.clear();
+   render();
+   createProducts();
+})
 
 createProducts();
 callStorage();
